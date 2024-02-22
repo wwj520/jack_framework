@@ -17,7 +17,7 @@ class SpiderPriorityQueue(PriorityQueue):
         """重写get"""
         f = super().get()
         try:
-            # def wait_for(fut, timeout)
+            # f:协程对象或者任务
             return await asyncio.wait_for(f, timeout=0.1)
         except TimeoutError:
             return None
