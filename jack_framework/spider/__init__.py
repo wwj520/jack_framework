@@ -10,6 +10,7 @@ class Spider(object):
             self.start_urls = []
 
     def start_requests(self):
+        """起始方法"""
         if self.start_urls:
             for url in self.start_urls:
                 yield Request(url=url)

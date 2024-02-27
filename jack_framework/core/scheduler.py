@@ -4,8 +4,6 @@
 """
 调度器：负责队列
 """
-import asyncio
-from asyncio import PriorityQueue
 from typing import Optional
 from jack_framework.utils.pqueue import SpiderPriorityQueue
 
@@ -18,7 +16,7 @@ class Scheduler(object):
         self.request_queue = SpiderPriorityQueue()
 
     async def next_request(self):
-        """获取下一个请求"""
+        """获取请求"""
         request = await self.request_queue.get()
         return request
 
@@ -26,3 +24,8 @@ class Scheduler(object):
         """存入请求"""
         await self.request_queue.put(request)
 
+    def idle(self):
+        return len(self) == 0
+
+    def __len__(self):
+        return self.request_queue.qsize()

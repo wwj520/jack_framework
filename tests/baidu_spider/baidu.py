@@ -10,8 +10,18 @@ class BaseSpider(Spider):
     start_urls = ["https://www.baidu.com", "https://www.baidu.com"]
 
     def parse(self, response):
-        print("1111")
         for i in range(10):
             url = "https://www.baidu"
-            request = Request(url=url)
+            request = Request(url=url, callback=self.parse_page)
             yield request
+
+    def parse_page(self, response):
+        print("parse_page", response)
+        for i in range(10):
+            url = "https://www.baidu"
+            request = Request(url=url, callback=self.parse_detail_page)
+            yield request
+
+    def parse_detail_page(self, response):
+        print("parse_detail", response)
+

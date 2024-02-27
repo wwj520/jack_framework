@@ -4,3 +4,7 @@
 
 class TransformError(TypeError):
     pass
+
+
+class OutPutError(Exception):
+    pass
