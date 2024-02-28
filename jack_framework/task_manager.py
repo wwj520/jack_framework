@@ -11,7 +11,7 @@ from asyncio import Task, Future, Semaphore
 
 class TaskManager:
 
-    def __init__(self, total_concurrency=50):
+    def __init__(self, total_concurrency=10):
         """
         :param total_concurrency: 默认并发数
         """

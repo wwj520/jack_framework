@@ -18,13 +18,13 @@ from jack_framework.utils.spider import transform
 
 class Engine(object):
 
-    def __init__(self):
+    def __init__(self, settings):
         self.downloader: Downloader = Downloader()
         self.start_requests: Optional[Generator] = None
         self.scheduler: Optional[Scheduler] = None
         self.spider: Optional[Spider] = None
         self.engine_run = False  # engine启动标识--测试
-        self.task_manager: Optional[TaskManager] = TaskManager()
+        self.task_manager: Optional[TaskManager] = TaskManager(settings.get())
 
     async def start_spider(self, spider):
         self.engine_run = True
@@ -49,10 +49,8 @@ class Engine(object):
             else:
                 try:
                     start_request = next(self.start_requests)  # todo
-                    # start_request = next([])  # todo
                 except StopIteration:
                     # 协程结束问题的捕获
-                    print('结束')
                     self.start_requests = None
                 except Exception as e:  # 捕获非Generator的错误
                     # 0. 发送请求的task运行完毕 1. 判断调度器是否空 2.下载器是否空

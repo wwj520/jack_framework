@@ -5,11 +5,14 @@ import asyncio
 
 from jack_framework.core.engine import Engine
 from tests.baidu_spider.baidu import BaseSpider
+from jack_framework.utils.project import get_project_settings
 
 
 async def run():
-    baidu_spider = BaseSpider()
-    await Engine().start_spider(baidu_spider)
+    settings = get_project_settings("settings")
+    print(settings)
+    # baidu_spider = BaseSpider()
+    # await Engine(settings).start_spider(baidu_spider)
 
 
 if __name__ == '__main__':

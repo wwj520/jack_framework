@@ -3,8 +3,6 @@
 # Date: 2024/2/21
 """下载器"""
 import asyncio
-import requests
-import time
 
 
 class Downloader(object):
