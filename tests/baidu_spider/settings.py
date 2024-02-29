@@ -4,7 +4,7 @@ import os  # -*- coding:utf-8 -*-
 
 PROJECT_NAME = "baidu_spider"    # 项目名称
 
-CONCURRENCY = 16                 # 并发数
+CONCURRENCY = 10                 # 并发数
 
 
 

@@ -1,10 +1,11 @@
-import os  # -*- coding:utf-8 -*-
+# -*- coding:utf-8 -*-
 # Author: Jack
 # Date: 2024/2/28
 
 """
 配置管理
 """
+from copy import deepcopy
 from importlib import import_module
 from jack_framework.settings import default_settings
 from collections.abc import MutableMapping
@@ -92,6 +93,10 @@ class SettingManager(MutableMapping):
 
     def __str__(self):
         return f"[settings vale: {self.attributes}]"
+
+    def copy(self):
+        """深拷贝可变对象，解决同时多个脚本并发配置"""
+        return deepcopy(self)
 
     __repr__ = __str__
 

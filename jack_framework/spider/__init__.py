@@ -8,6 +8,14 @@ class Spider(object):
     def __init__(self):
         if not hasattr(self, "start_urls"):
             self.start_urls = []
+        self.crawler = None  # 在crawler.py中需要
+
+    @classmethod
+    def create_instance(cls, crawler, *args, **kwargs):
+        """动态创建实例"""
+        o = cls()
+        o.crawler = crawler
+        return o
 
     def start_requests(self):
         """起始方法"""

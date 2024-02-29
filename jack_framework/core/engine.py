@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 # Author: Jack
-# Date: 2024/2/21
+# Date: 2024/2/27
 """
 引擎脚本: 负责串联爬虫【框架核心】
 """
@@ -18,13 +18,16 @@ from jack_framework.utils.spider import transform
 
 class Engine(object):
 
-    def __init__(self, settings=None):
+    def __init__(self, crawler):
+        self.crawler = crawler
+        self.settings = crawler.settings
         self.downloader: Downloader = Downloader()
         self.start_requests: Optional[Generator] = None
         self.scheduler: Optional[Scheduler] = None
         self.spider: Optional[Spider] = None
         self.engine_run = False  # engine启动标识--测试
-        self.task_manager: Optional[TaskManager] = TaskManager(settings.get("CONCURRENCY"))
+        print("并发数", self.crawler.settings.getint('CONCURRENCY'))
+        self.task_manager: Optional[TaskManager] = TaskManager(self.crawler.settings.getint('CONCURRENCY'))
 
     async def start_spider(self, spider):
         self.engine_run = True
