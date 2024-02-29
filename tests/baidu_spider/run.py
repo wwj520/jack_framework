@@ -10,9 +10,8 @@ from jack_framework.utils.project import get_project_settings
 
 async def run():
     settings = get_project_settings("settings")
-    print(settings)
-    # baidu_spider = BaseSpider()
-    # await Engine(settings).start_spider(baidu_spider)
+    baidu_spider = BaseSpider()
+    await Engine(settings).start_spider(baidu_spider)
 
 
 if __name__ == '__main__':

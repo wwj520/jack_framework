@@ -99,3 +99,4 @@ class SettingManager(MutableMapping):
 if __name__ == '__main__':
     sm = SettingManager()
     print(sm.items())
+    print(sm.values())

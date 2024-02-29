@@ -15,7 +15,7 @@ class Request(object):
             method: str = "get",
             headers: Optional[Dict] = None,
             callback: Optional[Callable] = None,
-            priority: int = 0, # 优先级
+            priority: int = 0,  # 优先级
             cookies: Optional[Dict] = None,
             proxy: Optional[Dict] = None,
             body=''

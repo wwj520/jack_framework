@@ -18,13 +18,13 @@ from jack_framework.utils.spider import transform
 
 class Engine(object):
 
-    def __init__(self, settings):
+    def __init__(self, settings=None):
         self.downloader: Downloader = Downloader()
         self.start_requests: Optional[Generator] = None
         self.scheduler: Optional[Scheduler] = None
         self.spider: Optional[Spider] = None
         self.engine_run = False  # engine启动标识--测试
-        self.task_manager: Optional[TaskManager] = TaskManager(settings.get())
+        self.task_manager: Optional[TaskManager] = TaskManager(settings.get("CONCURRENCY"))
 
     async def start_spider(self, spider):
         self.engine_run = True

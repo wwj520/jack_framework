@@ -34,5 +34,5 @@ class TaskManager:
         task.add_done_callback(done_task)
 
     def all_done(self) -> bool:
-        """判断当前任务是否为空"""
+        """判断当前所有tasks任务是否为空"""
         return len(self.current_task) == 0
