@@ -71,7 +71,7 @@ class SettingManager(MutableMapping):
 
     def set_settings(self, module):
         """
-        读取模块并设置
+        动态读取模块并设置
         :param module: 可以是字符串也可是模块对象
         :return:
         """
@@ -101,7 +101,3 @@ class SettingManager(MutableMapping):
     __repr__ = __str__
 
 
-if __name__ == '__main__':
-    sm = SettingManager()
-    print(sm.items())
-    print(sm.values())

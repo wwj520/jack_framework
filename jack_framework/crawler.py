@@ -11,6 +11,7 @@ from jack_framework.core.engine import Engine
 from jack_framework.settings.settings_manager import SettingManager
 from jack_framework.spider import Spider
 from typing import Type, Final, Set, Optional
+from jack_framework.utils.project import merge_settings
 
 
 class Crawler:
@@ -22,18 +23,23 @@ class Crawler:
         self.settings: SettingManager = settings.copy()
 
     async def crawl(self):
+        """配置引擎启动"""
         self.spider = self._create_spider()
         self.engine = self._create_engine()
         await self.engine.start_spider(self.spider)
 
     def _create_spider(self) -> Spider:
-        # 测试比较与self.spider_cls()的区别
-        # return self.spider_cls()
+        # todo 测试比较与self.spider_cls()的区别
         spider = self.spider_cls.create_instance(self)
+        self._set_spider(spider)
         return spider
 
     def _create_engine(self):
+        # 这里将self直接丢进Engine中，是将Crawler中是所有属性方法都传给引擎
         return Engine(self)
+
+    def _set_spider(self, spider):
+        merge_settings(spider, self.settings)
 
 
 class CrawlerProcess(object):
@@ -59,7 +65,7 @@ class CrawlerProcess(object):
     def _create_crawler(self, spider_cls) -> Crawler:
         """
         :param spider_cls: 类本身不是实例
-        :return: Crawler对象
+        :return: 爬虫类和配置的
         """
         if inspect.isclass(spider_cls):
             crawler = Crawler(spider_cls, self.settings)  # noqa

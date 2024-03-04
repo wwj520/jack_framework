@@ -4,6 +4,8 @@
 """下载器"""
 import asyncio
 
+import requests
+
 
 class Downloader(object):
 
@@ -19,9 +21,9 @@ class Downloader(object):
     async def download(self, request):
         """发送请求下载"""
         # response = requests.get(request.url)
-        # (response)
         await asyncio.sleep(0.5)
         return "get result successfully"
+        # return response.url
 
     def idle_task(self) -> bool:
         return len(self) == 0

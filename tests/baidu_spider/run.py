@@ -3,7 +3,6 @@
 # Date: 2024/2/21
 import asyncio
 
-from jack_framework.core.engine import Engine
 from tests.baidu_spider.spiders.baidu import BaseSpider
 from tests.baidu_spider.spiders.baidu2 import BaseSpider2
 from jack_framework.utils.project import get_project_settings

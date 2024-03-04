@@ -9,6 +9,8 @@ class BaseSpider(Spider):
 
     start_urls = ["https://www.baidu.com", "https://www.baidu.com"]
 
+    custom_settings = {"CONCURRENCY": 5}
+
     def parse(self, response):
         for i in range(10):
             url = "https://www.baidu"
