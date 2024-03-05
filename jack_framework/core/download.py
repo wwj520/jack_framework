@@ -4,8 +4,6 @@
 """下载器"""
 import asyncio
 
-import requests
-
 
 class Downloader(object):
 

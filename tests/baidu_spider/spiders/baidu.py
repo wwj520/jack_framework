@@ -3,13 +3,12 @@
 # Date: 2024/2/21
 from jack_framework import Request
 from jack_framework.spider import Spider
+from items import BaiduSpiderItem  # type: ignore
 
 
 class BaseSpider(Spider):
 
     start_urls = ["https://www.baidu.com", "https://www.baidu.com"]
-
-    custom_settings = {"CONCURRENCY": 5}
 
     def parse(self, response):
         for i in range(10):
@@ -26,4 +25,8 @@ class BaseSpider(Spider):
 
     def parse_detail_page(self, response):
         print("parse_detail", response)
+        item = BaiduSpiderItem()
+        item["url"] = response.url
+        item["title"] = response
+
 
