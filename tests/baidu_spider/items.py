@@ -9,3 +9,4 @@ class BaiduSpiderItem(Item):
 
     url = Field()
     title = Field()
+    X = "XXX"

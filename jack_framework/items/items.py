@@ -2,22 +2,23 @@
 # Author: Jack
 # Date: 2024/3/5
 
-from jack_framework.items import Field
+from jack_framework.items import Field, ItemMeta
 from typing import Dict
 
 
-class Item:
+class Item(metaclass=ItemMeta):
 
-    FIELDS: Dict = dict()
+    FIELDS: Dict[str, Field] = {}
 
     def __init__(self):
-        for cls_attr, value in self.__class__.__dict__.items():
-            if isinstance(value, Field):
-                self.FIELDS[cls_attr] = value
+        self._values = {}
         print(self.FIELDS)
 
     def __setitem__(self, key, value):
-        pass
+        if key in self.FIELDS:
+            self._values[key] = value
+        else:
+            raise KeyError(key)
 
     def __getitem__(self, key):
         pass
@@ -28,4 +29,9 @@ if __name__ == '__main__':
         url = Field()
         title = Field()
 
+
+    class TestItem2(Item):
+        name = Field()
+        title = Field()
     x = TestItem()
+    y = TestItem2()

@@ -11,8 +11,9 @@ from jack_framework.settings.settings_manager import SettingManager
 
 
 def get_setting_module_path(path='.'):
+    # 获取绝对路径
     path = os.path.abspath(path)
-    print(path)
+    # 获取路径的目录部分
     project_path = os.path.dirname(path)
     sys.path.append(project_path)
 
